@@ -7,11 +7,6 @@ def scrape_page(page, url)
   table = page.at("tbody")
   
   table.search("tr")[0..-1].each do |tr|
-  
-    print "council_reference: " + tr.search("td")[0].inner_text.split("(")[0]
-    print "address: " + tr.search("td")[1].inner_text + ", VIC"
-    print "description: " + tr.search("td")[2].inner_text
-    
     record = {
       "info_url" => url,
       "comment_url" => url,
