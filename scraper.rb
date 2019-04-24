@@ -25,7 +25,7 @@ def scrape_page(page, url)
   end
 end
 
-url = "http://www.bawbawshire.vic.gov.au/Building-and-Planning/Planning/Current-Applications-on-Exhibition/List-of-Current-Planning-Permit-Applications-on-Exhibition"
+url = "http://www.bawbawshire.vic.gov.au/Building-and-Planning/Planning/List-of-Current-Planning-Permit-Applications-on-Exhibition"
 page = agent.get(url)
 puts "Scraping page..."
 scrape_page(page, url)
