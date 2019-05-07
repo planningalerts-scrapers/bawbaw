@@ -15,13 +15,8 @@ def scrape_page(page, url)
       "description" => tr.search("td")[2].inner_text,
       "date_scraped" => Date.today.to_s
     }
-    
-    # Check if record already exists
-    if (ScraperWiki.select("* from data where `council_reference`='#{record['council_reference']}'").empty? rescue true)
-      ScraperWiki.save_sqlite(['council_reference'], record)
-    else
-      puts "Skipping already saved record " + record['council_reference']
-    end
+
+    ScraperWiki.save_sqlite(['council_reference'], record)
   end
 end
 
