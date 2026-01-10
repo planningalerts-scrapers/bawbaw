@@ -6,7 +6,7 @@ agent = Mechanize.new
 def scrape_page(page, url)
   table = page.at("tbody")
   
-  table.search("tr")[0..-1].each do |tr|
+  table.search("tr").each do |tr|
     record = {
       "info_url" => url,
       "comment_url" => url,
@@ -15,12 +15,19 @@ def scrape_page(page, url)
       "description" => tr.search("td")[2].inner_text,
       "date_scraped" => Date.today.to_s
     }
-
+    puts "Saving application: #{record['council_reference']}"
     ScraperWiki.save_sqlite(['council_reference'], record)
   end
 end
 
 url = "http://www.bawbawshire.vic.gov.au/Building-and-Planning/Planning/List-of-Current-Planning-Permit-Applications-on-Exhibition"
 page = agent.get(url)
+
 puts "Scraping page..."
+
 scrape_page(page, url)
+
+puts "Scraping complete!"
+
+puts "PAGE.BODY:", page.body if ENV['DEBUG']
+
