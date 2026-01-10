@@ -15,8 +15,13 @@ Add any issues to https://github.com/planningalerts-scrapers/issues/issues
 
 ### Expected output
 
+    Injecting configuration and compiling...
+    Injecting scraper and running...
+    Scraping page...
+    Saving application: PLA0146/25
+    Scraping complete!
 
-Execution time: ~ 1 to 2 minutes
+Execution time: ~ 5 seconds
 
 ## To run style and coding checks
 
