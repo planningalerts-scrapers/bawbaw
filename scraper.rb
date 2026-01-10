@@ -1,11 +1,11 @@
-require 'scraperwiki'
-require 'mechanize'
+require "scraperwiki"
+require "mechanize"
 
 agent = Mechanize.new
 
 def scrape_page(page, url)
   table = page.at("tbody")
-  
+
   table.search("tr").each do |tr|
     record = {
       "info_url" => url,
@@ -13,10 +13,10 @@ def scrape_page(page, url)
       "council_reference" => tr.search("td")[0].inner_text.split("(")[0],
       "address" => tr.search("td")[1].inner_text + ", VIC",
       "description" => tr.search("td")[2].inner_text,
-      "date_scraped" => Date.today.to_s
+      "date_scraped" => Date.today.to_s,
     }
     puts "Saving application: #{record['council_reference']}"
-    ScraperWiki.save_sqlite(['council_reference'], record)
+    ScraperWiki.save_sqlite(["council_reference"], record)
   end
 end
 
@@ -29,5 +29,4 @@ scrape_page(page, url)
 
 puts "Scraping complete!"
 
-puts "PAGE.BODY:", page.body if ENV['DEBUG']
-
+puts "PAGE.BODY:", page.body if ENV["DEBUG"]
